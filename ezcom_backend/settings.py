@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'ezcom_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres', 
+        'NAME': 'test', 
         'USER': 'postgres', 
         'PASSWORD': '05Avinash',
         'HOST': '127.0.0.1', 
