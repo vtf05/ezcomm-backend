@@ -18,6 +18,8 @@ import datetime
 from datetime import date
 import aspose.words as aw
 
+
+
 class Notice_PostViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Notice_Post.objects.all()
@@ -38,7 +40,7 @@ class Notice_PostViewSet(viewsets.ModelViewSet):
             Subject = request.data['subject']
             Date = datetime.datetime.now()
             content = request.data['content']
-            template = DocxTemplate(r'C:\Users\Avinash vishwakarma\Desktop\ezcom_backend\notice\Subject.docx')
+            template = DocxTemplate('media/Subject.docx')
             context = {
                 'dept': dept,
                 'date': Date,
