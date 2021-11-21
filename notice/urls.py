@@ -4,7 +4,7 @@ from rest_framework.routers import SimpleRouter  # we can use custom routers
 
 
 router = SimpleRouter()
-router.register('Notice_Post', Notice_PostViewSet)
+router.register('notice_post', Notice_PostViewSet)
 router.register('comments',CommentViewSet)
 urlpatterns = router.urls
 

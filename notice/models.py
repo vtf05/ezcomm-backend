@@ -1,17 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
+import datetime
 
 # Create your models here.
 class Notice_Post(models.Model) :
 
-    author = models.OneToOneField(User , on_delete = models.CASCADE)
-    date = models.DateTimeField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    department = models.CharField(max_length = 50,null = True)
+    desig =  models.CharField(max_length = 50,null = True)
+    subject = models.TextField(max_length = 300,null = True)
+    date = models.DateTimeField(default = datetime.datetime.now())
     content = models.TextField(max_length = 300)
-    image_content = models.ImageField(upload_to = 'media')
+    image_content = models.ImageField(upload_to = 'images/',null=True, blank = True)
     is_assignment  =  models.BooleanField(default=False)
-  
+    template_docx = models.FileField(upload_to='files/', null=True, blank = True , verbose_name="")
+
 
 
 
