@@ -8,8 +8,10 @@ class StudentProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentProfile 
         fields = '__all__'
+        depth = 1
 
 class TeacherProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeacherProfile
         fields = '__all__'
+        depth = 1

@@ -24,6 +24,11 @@ class Notice_PostViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Notice_Post.objects.all()
     serializer_class = Notice_PostSerializer
+    filter_fields = (
+        'is_assignment',
+        'author',
+    )
+
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
