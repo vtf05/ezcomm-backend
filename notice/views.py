@@ -1,10 +1,10 @@
 from rest_framework import viewsets
-from rest_framework import status
+from rest_framework import status , parsers
 from rest_framework.permissions import IsAuthenticated
-from .serializers import Notice_PostSerializer , CommentSerializer
+from .serializers import Notice_PostSerializer , CommentSerializer,Assignment_PostSerializer
 
 from django.contrib.auth.models import User
-from .models import Notice_Post , Comment
+from .models import Notice_Post , Comment ,Assignment_Post
 from rest_framework.response import Response
 from rest_framework.decorators import action
 ################## django api view ###################
@@ -28,7 +28,7 @@ class Notice_PostViewSet(viewsets.ModelViewSet):
         'is_assignment',
         'author',
     )
-
+    parser_classes = [parsers.MultiPartParser,parsers.FormParser]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -64,7 +64,16 @@ class Notice_PostViewSet(viewsets.ModelViewSet):
             obj.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         
-        
+
+class Assignment_PostViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+    queryset = Assignment_Post.objects.all()
+    serializer_class = Assignment_PostSerializer
+    filter_fields = (
+        'subject',
+        'author',
+    )
+    parser_classes = [parsers.MultiPartParser,parsers.FormParser]        
 
       
 
