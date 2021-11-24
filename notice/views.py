@@ -69,10 +69,7 @@ class Assignment_PostViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Assignment_Post.objects.all()
     serializer_class = Assignment_PostSerializer
-    filter_fields = (
-        'subject',
-        'author',
-    )
+    
     parser_classes = [parsers.MultiPartParser,parsers.FormParser]        
 
       
