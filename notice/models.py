@@ -7,6 +7,7 @@ from django.utils import timezone
 class Notice_Post(models.Model) :
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    name =  models.CharField(max_length = 50,null = True)
     department = models.CharField(max_length = 50,null = True)
     desig =  models.CharField(max_length = 50,null = True)
     subject = models.TextField(max_length = 300,null = True)
@@ -19,6 +20,7 @@ class Notice_Post(models.Model) :
 
 class Assignment_Post(models.Model):
     assigned_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    name =  models.CharField(max_length = 50,null = True)
     department = models.CharField(max_length = 50,null = True)
     desig =  models.CharField(max_length = 50,null = True)
     subject = ArrayField(models.CharField(max_length=15, null=True, blank=True), blank=True, null=True)
