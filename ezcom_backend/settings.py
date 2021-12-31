@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta
 import datetime
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,17 +68,6 @@ MIDDLEWARE = [
 # setting jwt expiration time 
 # problem faced short expiration of jwt token
 
-JWT_AUTH = {
-    # how long the original token is valid for
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=20),
-
-    # allow refreshing of tokens
-    'JWT_ALLOW_REFRESH': True,
-
-    # this is the maximum time AFTER the token was issued that
-    # it can be refreshed.  exprired tokens can't be refreshed.
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=22),
-}
 
 ROOT_URLCONF = 'ezcom_backend.urls'
 
@@ -146,21 +136,14 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated', ] ,
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
         
-        'rest_framework_simplejwt.authentication.JWTAuthentication'],
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication'],
 }
 
-JWT_AUTH = {
-    # how long the original token is valid for
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=20),
-
-    # allow refreshing of tokens
-    'JWT_ALLOW_REFRESH': True,
-
-    # this is the maximum time AFTER the token was issued that
-    # it can be refreshed.  exprired tokens can't be refreshed.
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=22),
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
 }
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

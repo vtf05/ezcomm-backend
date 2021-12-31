@@ -43,7 +43,7 @@ class Notice_PostViewSet(viewsets.ModelViewSet):
             desig = request.data['desig']
             dept = request.data['department']
             Subject = request.data['subject']
-            Date = datetime.datetime.now()
+            Date = datetime.date.today()
             content = request.data['content']
             template = DocxTemplate('media/Subject.docx')
             context = {
@@ -54,13 +54,10 @@ class Notice_PostViewSet(viewsets.ModelViewSet):
                 'desig': desig,
             }
             template.render(context)
-            doc_name = "mdeia/" +str(author)+".docx"
-            template.save('media/Subject1.docx')
-            doc = aw.Document('media/Subject1.docx')
-            doc.save("media/"+str(author)+".pdf")
-            print("done")
+            doc_name = "media/files/"+str(author)+str(Date)+".docx"
+            template.save(doc_name)
             obj = Notice_Post.objects.latest('id')
-            obj.template_docx =  os.path.abspath('media/notice.pdf')
+            obj.template_docx =  os.path.abspath(doc_name)
             obj.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         
@@ -78,8 +75,9 @@ class CommentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+ 
 
-            
+    parser_classes = [parsers.MultiPartParser,parsers.FormParser]           
         
     
 

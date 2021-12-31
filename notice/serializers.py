@@ -8,11 +8,12 @@ class Notice_PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notice_Post 
         fields = '__all__'
-
+        
 class Assignment_PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assignment_Post
-        fields = '__all__'        
+        fields = '__all__'   
+            
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
