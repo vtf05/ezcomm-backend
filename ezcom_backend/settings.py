@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
+from datetime import timedelta
+import datetime
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-8b5p#ajg)yh86vil%t-dbcno=_@!3%aemmc^#i06%i#6_ou(0w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,9 +48,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'clsses',
+    'django_filters',
+    'corsheaders',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt' ,
 ]
 SITE_ID = 1
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,7 +65,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# setting jwt expiration time 
+# problem faced short expiration of jwt token
+
+
 ROOT_URLCONF = 'ezcom_backend.urls'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
@@ -122,8 +134,17 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated', ] ,
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',
+    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+        
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication'],
 }
 
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
+}
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
