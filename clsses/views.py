@@ -26,6 +26,6 @@ class ScheduleViewSet(viewsets.ModelViewSet):
     filter_fields = (
         'day','semester'
     )
-    parser_classes = [parsers.MultiPartParser,parsers.FormParser]
+    
 
 
