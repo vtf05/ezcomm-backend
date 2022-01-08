@@ -75,9 +75,11 @@ class CommentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
- 
-
-    parser_classes = [parsers.MultiPartParser,parsers.FormParser]           
+    filter_fields = (
+        'post',
+    )
+    parser_classes = [parsers.MultiPartParser,parsers.FormParser]    
+           
         
     
 
