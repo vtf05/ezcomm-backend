@@ -16,7 +16,7 @@ from docx.shared import Cm, Inches, Mm, Emu
 # import random
 import datetime
 from datetime import date
-import aspose.words as aw
+
 
 
 
