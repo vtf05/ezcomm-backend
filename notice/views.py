@@ -77,8 +77,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     filter_fields = (
         'post',
-    )
-    parser_classes = [parsers.MultiPartParser,parsers.FormParser]    
+    )  
            
         
     
