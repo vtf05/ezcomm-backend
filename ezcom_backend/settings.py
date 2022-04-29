@@ -39,19 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'notice' ,
-    'userprofile',
     'rest_framework',
     'rest_auth',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'rest_auth.registration',
-    'clsses',
     'django_filters',
     'corsheaders',
     'rest_framework.authtoken',
     'rest_framework_simplejwt' ,
+    'aas',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -65,6 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_COOKIE_SECURE = False
 # setting jwt expiration time 
 # problem faced short expiration of jwt token
 
@@ -76,7 +75,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,17 +94,17 @@ WSGI_APPLICATION = 'ezcom_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.sqlite3',
-  #      'NAME': BASE_DIR / 'db.sqlite3',
-   # }
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
 # }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test', 
+        'NAME': 'vanki', 
         'USER': 'postgres', 
         'PASSWORD': '05Avinash',
         'HOST': '127.0.0.1', 
@@ -130,14 +129,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+AUTH_USER_MODEL = 'aas.User'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', ] ,
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated', ] ,
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',
     ),
     # 'DEFAULT_AUTHENTICATION_CLASSES': [
-        
+
     #     'rest_framework_simplejwt.authentication.JWTAuthentication'],
 }
 
@@ -163,10 +163,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR ,"ezcomm-frontend/build/static")
+# ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

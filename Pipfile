@@ -49,6 +49,8 @@ Jinja2 = "==3.0.3"
 MarkupSafe = "==2.0.1"
 Pillow = "==8.4.0"
 djangorestframework-simplejwt = "*"
+pypdf4 = "*"
+pdf2image = "*"
 
 [dev-packages]
 
